@@ -49,10 +49,10 @@ function draw() {
       
       // if (i > 1000 & i < 4000)console.log(error)
       if (rightPixel)     errorSpread(rightPixel, error, 7)
-      if (downPixel)      errorSpread(downPixel, error, 5)
+      // if (downPixel)      errorSpread(downPixel, error, 5)
       if (downRightPixel) errorSpread(downRightPixel, error, 1)
-      errorSpread(downLeftPixel, error, 3)
-
+      // errorSpread(downLeftPixel, error, 3)
+      // uncommenting the downPixel and downleftPixel calls creates strange artifacting I'm still not sure how to get rid of
       
       
     }
