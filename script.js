@@ -1,14 +1,14 @@
 function draw() {
   const image = new Image()
   image.CrossOrigin = "anonymous";
-  image.src = ".imgSamples/04049-Stunning-Marble-Bust-of-Greek-God-Apollo-11.jpg"
+  image.src = "./imgSamples/04049-Stunning-Marble-Bust-of-Greek-God-Apollo-11.jpg"
   var imageData, data; 
   const canvas = document.getElementById("canvas")
-  canvas.height = `${image.height}`;
-  canvas.width = `${image.width}`;
   const ctx = canvas.getContext("2d")
   
   image.addEventListener("load", () => {  
+    canvas.height = `${image.height}`;
+    canvas.width = `${image.width}`;
     ctx.drawImage(image, 0, 0)
     image.style.display  = "none"
     imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
