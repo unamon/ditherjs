@@ -12,15 +12,13 @@ function draw() {
   image.addEventListener("load", () => {
     canvas.height = `${image.height}`;
     canvas.width = `${image.width}`;
-    ctx.drawImage(image, 0, 0)
-    image.style.display = "none"
-    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+    drawImage()
 
   })
   canvas.addEventListener("click", dither);
 
-
   function dither() {
+    drawImage()
     data = imageData.data
     limX = imageData.width, limY = imageData.height;
     for (let y = 0; y < limY; y++) {
@@ -37,7 +35,7 @@ function draw() {
         // calculate error
         let error = average - value;
 
-          switch (select.value) {
+        switch (select.value) {
           case "floyd":
             floydSteinberg(i, data, error)
             break;
@@ -82,13 +80,13 @@ function draw() {
       botright = i + limX * 4 + 4 < nData.length ? i + limX * 4 + 4 : false
       bot2 = i + limX * 4 * 2 < nData.length ? i + limX * 4 * 2 : false
 
-      if (right1)   errorSpread(right1, error, 1, 8)
-      if (right2)   errorSpread(right2, error, 1, 8)
-      if (botleft)  errorSpread(botleft, error, 1, 8)
-      if (bot)      errorSpread(bot, error, 1, 8)
+      if (right1) errorSpread(right1, error, 1, 8)
+      if (right2) errorSpread(right2, error, 1, 8)
+      if (botleft) errorSpread(botleft, error, 1, 8)
+      if (bot) errorSpread(bot, error, 1, 8)
       if (botright) errorSpread(botright, error, 1, 8)
-      if (bot2)     errorSpread(bot2, error, 1, 8)
-    } 
+      if (bot2) errorSpread(bot2, error, 1, 8)
+    }
     function errorSpread(pixel, error, errorQuoeficient, quantaSize) {
       let average = Math.floor((data[pixel] + data[pixel + 1] + data[pixel + 2]) / 3)
 
@@ -96,6 +94,11 @@ function draw() {
       data[pixel + 1] = Math.floor((average + (error * errorQuoeficient / quantaSize)))
       data[pixel + 2] = Math.floor((average + (error * errorQuoeficient / quantaSize)))
     }
-    
+
+    function drawImage() {
+      ctx.drawImage(image, 0, 0)
+      image.style.display = "none"
+      imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+    }
   }
 }
