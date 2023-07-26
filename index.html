@@ -4,7 +4,7 @@
     <script src="script.js">
     </script>
 </head>
-<body onload="draw();">
+<body onload="start()">
     <canvas id="canvas" width="180" height="215">
         Canvas not displaying
     </canvas>
@@ -12,5 +12,6 @@
         <option value="atkinson">Atkinson</option>
         <option value="floyd">Floyd-Steinberg</option>
     </select>
+    <button onclick="ditherProcessStart()">Dither</button>
 </body>
 </html>
